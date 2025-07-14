@@ -1,0 +1,30 @@
+[project]
+name = "documentation-assistant-project"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "beautifulsoup4>=4.13.4",
+    "fastapi>=0.116.1",
+    "jinja2>=3.1.6",
+    "langchain>=0.3.26",
+    "langchain-community>=0.3.27",
+    "langchain-openai>=0.3.28",
+    "langchain-pinecone>=0.2.8",
+    "nltk>=3.9.1",
+    "openai>=1.95.1",
+    "pinecone-client>=6.0.0",
+    "python-dotenv>=1.1.1",
+    "streamlit>=1.46.1",
+    "streamlit-chat>=0.1.1",
+    "tiktoken>=0.9.0",
+    "tqdm>=4.67.1",
+    "unstructured>=0.18.5",
+    "uvicorn>=0.35.0",
+]
+
+[dependency-groups]
+dev = [
+    "black>=25.1.0",
+]
