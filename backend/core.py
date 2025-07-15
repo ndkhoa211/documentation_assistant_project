@@ -77,7 +77,7 @@ def run_llm(
 
 if __name__ == "__main__":
     res = run_llm(query="What is a LangChain chain?")
-    print(f"Answer: {res["answer"]}")
+    print(f"Answer: {res['answer']}")
     print("\nGrounding Documents:")
     for doc in res.get(
         "context",

@@ -1,0 +1,10 @@
+[theme]
+# PyTorch light theme colors
+primaryColor = "#EE4C2C"  # PyTorch orange/red
+backgroundColor = "#FFFFFF"  # White background
+secondaryBackgroundColor = "#F5F5F5"  # Light gray for sections
+textColor = "#000000"  # Dark text
+font = "sans serif"
+
+[server]
+enableStaticServing = true
