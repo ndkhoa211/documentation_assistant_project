@@ -2,14 +2,8 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-from langchain_community.document_loaders import PyPDFLoader
-from langchain.text_splitter import (
-    CharacterTextSplitter,
-    RecursiveCharacterTextSplitter,
-)
-from langchain_openai import OpenAIEmbeddings, OpenAI
-from langchain_community.vectorstores import FAISS
-from langchain.chains.retrieval import create_retrieval_chain
+from langchain.text_splitter import RecursiveCharacterTextSplitter
+from langchain_openai import OpenAIEmbeddings
 from langchain_community.document_loaders import ReadTheDocsLoader
 from langchain_pinecone import PineconeVectorStore
 
