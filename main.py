@@ -4,14 +4,19 @@ from typing import Set
 from PIL import Image, ImageDraw, ImageFont
 
 
-def create_profile_image(name: str, size: tuple = (200, 200), bg_color: str = "#EE4C2C", text_color: str = "white"):
+def create_profile_image(
+    name: str,
+    size: tuple = (200, 200),
+    bg_color: str = "#EE4C2C",
+    text_color: str = "white",
+):
     """Create a profile image with initials."""
     # Create a new image with a background color
-    img = Image.new('RGB', size, bg_color)
+    img = Image.new("RGB", size, bg_color)
     draw = ImageDraw.Draw(img)
 
     # Get initials from name (up to 2 characters)
-    initials = ''.join(word[0].upper() for word in name.split()[:2])
+    initials = "".join(word[0].upper() for word in name.split()[:2])
 
     # Calculate font size (approximately 40% of image width)
     font_size = int(size[0] * 0.4)
@@ -52,12 +57,12 @@ with st.sidebar:
             "email": "john.doe@example.com",
             "role": "Developer",
             "status": "Active",
-            "joined": "2024-01-01"
+            "joined": "2024-01-01",
         }
 
     # Create and display profile picture
-    profile_img = create_profile_image(user_info.get('name', 'User'))
-    st.image(profile_img, width=150, caption=user_info.get('name', 'User Profile'))
+    profile_img = create_profile_image(user_info.get("name", "User"))
+    st.image(profile_img, width=150, caption=user_info.get("name", "User Profile"))
 
     # Display user information in a more formatted way
     st.write("### User Information")
@@ -68,7 +73,6 @@ with st.sidebar:
     st.write(f"📅 **Joined:** {user_info.get('joined', 'N/A')}")
 
     st.divider()
-
 
 
 st.header("LangChain - Documentation Assistant")
@@ -97,8 +101,6 @@ def create_sources_string(source_urls: Set[str]) -> str:
     for i, source in enumerate(sources_list):
         sources_string += f"{i+1}. {source}\n"
     return sources_string
-
-
 
 
 if submit_button and prompt:
