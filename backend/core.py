@@ -53,7 +53,8 @@ def run_llm(
 
     # create a retrieval chain
     qa = create_retrieval_chain(
-        retriever=docsearch.as_retriever(),
+        #retriever=docsearch.as_retriever(),
+        retriever=history_aware_retriever,
         combine_docs_chain=stuff_documents_chain,
     )
 
