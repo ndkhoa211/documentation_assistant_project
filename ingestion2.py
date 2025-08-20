@@ -8,6 +8,8 @@ import certifi # for getting valid certificate,
 # so we can attach to our HTTP request that we'll send
 
 from dotenv import load_dotenv
+from sqlalchemy.testing.suite.test_reflection import metadata
+
 load_dotenv()
 
 
@@ -63,7 +65,7 @@ tavily_map = TavilyMap(max_depth=5,
                        max_breadth=20,
                        max_pages=1000,
                        )
-tavily_crawl = TavilyCrawl()
+tavily_crawl = TavilyCrawl() # a langchain tool
 
 
 
@@ -75,6 +77,33 @@ tavily_crawl = TavilyCrawl()
 
 async def main():
     """Main async function to orchestrate the entire process."""
+    log_header("DOCUMENTATION INGESTION PIPELINE")
+
+    log_info(
+        "TavilyCrawl: Starting to Crawl documentation from https://python.langchain.com/",
+        Colors.PURPLE,
+    )
+
+    # Crawl the documentation site
+
+    res = tavily_crawl.invoke({
+        "url": "https://python.langchain.com/",
+        "max_depth": 5, # default is 1
+        # max_depth defines how far from the base url the crawler can explore
+        # https://docs.tavily.com/documentation/best-practices/best-practices-crawl
+        "extract_depth": "advanced",
+        # advanced: retrieve more data, including table, embedded contents with higher success rate
+        # but may increase the latency
+        #"instructions": "content on AI agents",
+    })
+
+    all_docs = [Document(page_content=result['raw_content'],
+                         metadata={"source": result['url']})
+                for result in res['results']]
+
+    log_success(
+        f"TavilyCrawl: Successfully crawled {len(all_docs)} URLs from https://python.langchain.com/",
+    )
 
 
 
