@@ -7,7 +7,9 @@ requires-python = ">=3.12,<3.13"
 dependencies = [
     "beautifulsoup4>=4.13.4",
     "fastapi>=0.116.1",
+    "ipykernel>=6.30.1",
     "jinja2>=3.1.6",
+    "jupyterlab>=4.4.6",
     "langchain>=0.3.26",
     "langchain-chroma>=0.2.5",
     "langchain-community>=0.3.27",
@@ -15,6 +17,7 @@ dependencies = [
     "langchain-pinecone>=0.2.0",
     "langchain-tavily>=0.2.11",
     "nltk>=3.9.1",
+    "notebook>=7.4.5",
     "openai>=1.95.1",
     "pinecone>=5.0.0,<7",
     "python-dotenv>=1.1.1",
