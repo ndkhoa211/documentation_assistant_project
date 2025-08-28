@@ -62,7 +62,7 @@ vectorstore = PineconeVectorStore(index_name="documentation-assistant-project-v2
 tavily_extract = TavilyExtract() # a langchain tool
 tavily_map = TavilyMap(max_depth=5,
                        max_breadth=20,
-                       max_pages=50,
+                       max_pages=1000,
                        ) # a langchain tool
 tavily_crawl = TavilyCrawl() # a langchain tool
 
@@ -211,6 +211,23 @@ async def main():
     #####    Process: concurrent extraction from web pages
     #####    Output: clean, parsed content
     all_docs = await async_extract(url_batches)
+
+
+
+
+    ##### 4. Chunking the Langchain documentation
+    log_header("⚙️ DOCUMENTATION CHUNKING PHASE ⚙️")
+    log_info(
+        f"✂️ Text Splitter: Processing {len(all_docs)} documents with 4000 chunk size and 200 overlap",
+        Colors.YELLOW,
+    )
+    text_splitter = RecursiveCharacterTextSplitter(chunk_size=4000,
+                                                   chunk_overlap=200)
+    splitted_docs = text_splitter.split_documents(all_docs)
+    log_success(
+        f"✂️ Text Splitter: Created {len(splitted_docs)} chunks from {len(all_docs)} documents",
+    )
+
 
 
 
